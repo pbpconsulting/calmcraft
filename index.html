@@ -3,32 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>calmcraft - Releases</title>
+  <title>philphelan.me - Books</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="site-header">
     <div class="brand">
       <a href="index.html" class="brand-link">
-        <img src="images/calmcraft-wordmark-greyletters.jpg" alt="calmcraft" class="wordmark">
+        <img src="images/mylogo-sage.svg" alt="Phil Phelan logo" class="brand-mark">
+        <img src="images/philphelan-wordmark-sage.svg" alt="Phil Phelan" class="wordmark" style="width: 100%; max-width: none;">
       </a>
     </div>
 
     <nav class="main-nav" aria-label="Main navigation">
-      <a href="index.html" class="nav-link active">Releases</a>
-      <a href="who-we-are.html" class="nav-link">Who We Are</a>
+      <a href="index.html" class="nav-link active">Books</a>
+      <a href="Advisory.html" class="nav-link">Advisory</a>
       <a href="blog.html" class="nav-link">Blog</a>
     </nav>
-
-    <div class="brand-mark-wrap">
-      <img src="images/calmcraft-logo-sage.png" alt="calmcraft logo" class="brand-mark">
-    </div>
   </header>
-
+  
   <section class="hero hero-dark">
     <div class="container hero-inner">
-      <h1>Releases</h1>
-      <p>Practical ideas, thoughtful releases, and work that doesn’t waste your time.</p>
+      <h1>Books</h1>
+      <p>Fancy a headrush? Download free ebook and audiobook samples below</p>
     </div>
   </section>
 
@@ -49,8 +46,8 @@
           </p>
 
           <div class="button-grid">
-            <a id="sample-ebook-link" class="btn btn-primary" href="#" download>Download free sample eBook</a>
-            <a id="sample-audio-link" class="btn btn-secondary" href="#" download>Download free sample audiobook</a>
+            <a id="sample-ebook-link" class="btn btn-primary" href="#" target="_blank">Download free sample eBook</a>
+            <a id="sample-audio-link" class="btn btn-secondary" href="#" target="_blank">Download free sample audiobook</a>
             <a id="amazon-link" class="btn btn-primary" href="#" target="_blank" rel="noopener">Buy on Amazon</a>
             <a id="audible-link" class="btn btn-secondary" href="#" target="_blank" rel="noopener">Listen on Audible</a>
           </div>
@@ -68,8 +65,8 @@
           </div>
 
           <div class="related-block">
-            <h4>Related releases</h4>
-            <ul id="related-releases"></ul>
+            <h4>Related Books</h4>
+            <ul id="related-Books"></ul>
           </div>
         </div>
       </div>
@@ -80,12 +77,12 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <p>© calmcraft</p>
+      <p>© Phil Phelan 2026</p>
     </div>
   </footer>
 
   <script>
-    const releases = [
+    const Books = [
       {
         id: "wellness-retreat",
         title: "The Universe's Most Overhyped Wellness Retreat",
@@ -125,7 +122,7 @@
     let currentIndex = 0;
 
     function renderRelease(index) {
-      const release = releases[index];
+      const release = Books[index];
 
       document.getElementById("release-cover").src = release.cover;
       document.getElementById("release-cover").alt = release.title + " cover";
@@ -140,7 +137,7 @@
       document.getElementById("snippet-1").textContent = release.snippets[0] || "";
       document.getElementById("snippet-2").textContent = release.snippets[1] || "";
 
-      const relatedList = document.getElementById("related-releases");
+      const relatedList = document.getElementById("related-Books");
       relatedList.innerHTML = "";
 
       release.related.forEach(item => {
@@ -154,12 +151,12 @@
     }
 
     document.getElementById("prev-release").addEventListener("click", () => {
-      currentIndex = (currentIndex - 1 + releases.length) % releases.length;
+      currentIndex = (currentIndex - 1 + Books.length) % Books.length;
       renderRelease(currentIndex);
     });
 
     document.getElementById("next-release").addEventListener("click", () => {
-      currentIndex = (currentIndex + 1) % releases.length;
+      currentIndex = (currentIndex + 1) % Books.length;
       renderRelease(currentIndex);
     });
 

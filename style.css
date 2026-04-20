@@ -143,7 +143,7 @@ a {
   font-size: 2rem;
 }
 
-/* Releases */
+/* Books */
 .release-carousel {
   display: grid;
   grid-template-columns: 56px minmax(0, 1fr) 56px;
