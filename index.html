@@ -49,22 +49,19 @@
           </p>
 
           <div class="button-grid">
-            <a id="sample-ebook-link" class="btn btn-primary" href="#" target="_blank">Download free sample eBook</a>
-            <a id="sample-audio-link" class="btn btn-secondary" href="#" target="_blank">Download free sample audiobook</a>
+            <a id="sample-ebook-link" class="btn btn-primary" href="#" target="_blank">Coming soon: Download free sample eBook</a>
+            <a id="sample-audio-link" class="btn btn-secondary" href="#" target="_blank">Coming soon: Download free sample audiobook</a>
             <a id="amazon-link" class="btn btn-primary" href="#" target="_blank" rel="noopener">Buy on Amazon</a>
-            <a id="audible-link" class="btn btn-secondary" href="#" target="_blank" rel="noopener">Listen on Audible</a>
+            <a id="audible-link" class="btn btn-secondary" href="#" target="_blank" rel="noopener">Coming soon: Listen on Audible</a>
           </div>
 
           <div class="snippet-block">
             <h4>Snippets</h4>
 
-            <blockquote class="snippet" id="snippet-1">
-              “Wait, you look relaxed,” hissed the volunteer coordinator as if it were an infection.
-            </blockquote>
+            <blockquote class="snippet" id="snippet-1"></blockquote>
+            <blockquote class="snippet" id="snippet-2"></blockquote>
+            <blockquote class="snippet" id="snippet-3"></blockquote>
 
-            <blockquote class="snippet" id="snippet-2">
-              “The oddest part? Everything here works exactly as it says it will. It’s insidious.”
-            </blockquote>
           </div>
 
           <div class="related-block">
@@ -96,8 +93,9 @@
         amazon: "https://www.amazon.com.au/dp/B0FKN4XPHY",
         audible: "#",
         snippets: [
-          "“Add quote no.1 here..... mayber something funny.... maybe not.",
-          "“add 2nd quote .... something more serious. maybe not again.”"
+          '"It was the kind of sky that was so still and perfect that it could have been painted by a past master. I don’t trust a society that makes perfection look so... laminated"',
+          '"This place is mocking me with breath fresheners. I’m not eating it"',
+          '"The problem with utopias, is they assume consistency is kindness. But people don’t grow in loops. They fracture and they ferment"'
         ],
         related: [
           { label: "Amazingly Average", href: "#" }
@@ -113,8 +111,9 @@
         amazon: "#",
         audible: "#",
         snippets: [
-          "You do not need to become extraordinary to become useful, peaceful, or decent.",
-          "A lot of suffering comes from trying to look impressive to people who barely remember your surname."
+          '"You do not need to become extraordinary to become useful, peaceful, or decent"',
+          '"The Theory of happiness is ..."',
+          '"A lot of suffering comes from trying to look impressive to people who barely remember your surname"'
         ],
         related: [
           { label: "The Universe's Most Overhyped Wellness Retreat", href: "#" }
@@ -139,6 +138,7 @@
 
       document.getElementById("snippet-1").textContent = release.snippets[0] || "";
       document.getElementById("snippet-2").textContent = release.snippets[1] || "";
+      document.getElementById("snippet-3").textContent = release.snippets[2] || "";
 
       const relatedList = document.getElementById("related-Books");
       relatedList.innerHTML = "";
