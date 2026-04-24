@@ -49,12 +49,7 @@
             A satirical sci-fi trip into a place where everything works beautifully, which turns out to be exactly the problem.
           </p>
 
-          <div class="button-grid">
-            <a id="sample-ebook-link" class="btn btn-primary" href="#" target="_blank">Coming soon: Download free sample eBook</a>
-            <a id="sample-audio-link" class="btn btn-secondary" href="#" target="_blank">Coming soon: Download free sample audiobook</a>
-            <a id="amazon-link" class="btn btn-primary" href="#" target="_blank" rel="noopener">Buy on Amazon</a>
-            <a id="audible-link" class="btn btn-secondary" href="#" target="_blank" rel="noopener">Coming soon: Listen on Audible</a>
-          </div>
+          <div class="button-grid" id="button-grid"></div>
 
           <div class="snippet-block">
             <h4>Snippets</h4>
@@ -83,44 +78,72 @@
   </footer>
 
   <script>
-    const Books = [
-      {
-        id: "wellness-retreat",
-        title: "The Universe's Most Overhyped Wellness Retreat",
-        cover: "images/universe-overhyped-wellness-retreat.jpg",
-        blurb: "A satirical sci-fi trip into a place where everything works beautifully, which turns out to be exactly the problem.",
-        sampleEbook: "#",
-        sampleAudio: "#",
-        amazon: "https://www.amazon.com.au/dp/B0FKN4XPHY",
-        audible: "#",
-        snippets: [
-          'Jeff would later describe his experience travelling to Utopia as: "Transcendental, like being hugged by physics and slapped by his ex-wife at the same time". I can’t say he was wrong, although I can only imagine the slap.',
-          'Around us, tiny holographic scenes began flickering mid-air – moments from our past lives played out; Jeff laughing with Emma and me on a pier; me alone in a hospital corridor, hands trembling. The images jumped, cut, and rewound – replaying our worst doubts like a director who couldn’t decide on an ending. A chair suddenly unfolded itself nearby, legs clicking out like an insect. A waiter asked in a voice like distant thunder, “Would you like to order your decisions?”',
-          'Betty studied us, then she sighed – a sound so soft it could have been compassion. “Take food and water. Leave at dawn. Go past the Museum of Truths then follow the maintenance road heading east until the buildings thin out. When the path eventually breaks, walk directly east for two days. Do not turn back, no matter how empty it feels.”'
-        ],
-        related: [
-          { label: "Amazingly Average", href: "#" }
-        ]
+const Books = [
+  {
+    id: "wellness-retreat",
+    title: "The Universe's Most Overhyped Wellness Retreat",
+    cover: "images/universe-overhyped-wellness-retreat.jpg",
+    blurb: "A satirical sci-fi trip into a place where everything works beautifully, which turns out to be exactly the problem.",
+    buttons: [
+
+    {
+        label: "Buy on Amazon",
+        href: "https://www.amazon.com.au/dp/B0FKN4XPHY",
+        className: "btn btn-primary",
+        target: "_blank"
       },
       {
-        id: "Amazingly-Average",
-        title: "Amazingly Average",
-        cover: "images/Amazingly-Average-FrontCover.png",
-        blurb: "A grounded, dry, honest book about ordinary life, impossible standards, and the relief of dropping the performance.",
-        sampleEbook: "#",
-        sampleAudio: "#",
-        amazon: "#",
-        audible: "#",
-        snippets: [
-          '"You do not need to become extraordinary to become useful, peaceful, or decent"',
-          '"The Theory of happiness is ..."',
-          '"A lot of suffering comes from trying to look impressive to people who barely remember your surname"'
-        ],
-        related: [
-          { label: "The Universe's Most Overhyped Wellness Retreat", href: "#" }
-        ]
+        label: "Download free eBook sample",
+        href: "sample.html",
+        className: "btn btn-primary"
+      },
+   
+      {
+        label: "Coming soon: Listen on Audible",
+        href: "#",
+        className: "btn btn-secondary"
+      },
+
+      {
+        label: "Coming soon: Free Audio Book sample",
+        href: "#",
+        className: "btn btn-secondary"
+      },
+
+
+
+    ],
+    snippets: [
+      'Jeff would later describe his experience travelling to Utopia as: "Transcendental, like being hugged by physics and slapped by his ex-wife at the same time". I can’t say he was wrong, although I can only imagine the slap.',
+      'Around us, tiny holographic scenes began flickering mid-air – moments from our past lives played out; Jeff laughing with Emma and me on a pier; me alone in a hospital corridor, hands trembling. The images jumped, cut, and rewound – replaying our worst doubts like a director who couldn’t decide on an ending. A chair suddenly unfolded itself nearby, legs clicking out like an insect. A waiter asked in a voice like distant thunder, “Would you like to order your decisions?”',
+      'Betty studied us, then she sighed – a sound so soft it could have been compassion. “Take food and water. Leave at dawn. Go past the Museum of Truths then follow the maintenance road heading east until the buildings thin out. When the path eventually breaks, walk directly east for two days. Do not turn back, no matter how empty it feels.”'
+    ],
+    related: [
+      { label: "Amazingly Average", href: "#" }
+    ]
+  },
+  {
+    id: "amazingly-average",
+    title: "Amazingly Average",
+    cover: "images/Amazingly-Average-FrontCover.png",
+    blurb: "A grounded, dry, honest book about ordinary life, impossible standards, and the relief of dropping the performance.",
+    buttons: [
+      {
+        label: "Coming soon",
+        href: "#",
+        className: "btn btn-disabled"
       }
-    ];
+    ],
+    snippets: [
+      '"You do not need to become extraordinary to become useful, peaceful, or decent"',
+      '"The Theory of happiness is ..."',
+      '"A lot of suffering comes from trying to look impressive to people who barely remember your surname"'
+    ],
+    related: [
+      { label: "The Universe's Most Overhyped Wellness Retreat", href: "#" }
+    ]
+  }
+];
 
     let currentIndex = 0;
 
@@ -132,10 +155,33 @@
       document.getElementById("release-title").textContent = release.title;
       document.getElementById("release-blurb").textContent = release.blurb;
 
-      document.getElementById("sample-ebook-link").href = release.sampleEbook;
-      document.getElementById("sample-audio-link").href = release.sampleAudio;
-      document.getElementById("amazon-link").href = release.amazon;
-      document.getElementById("audible-link").href = release.audible;
+      const buttonGrid = document.getElementById("button-grid");
+      buttonGrid.innerHTML = "";
+
+      if (release.buttons.length === 1) {
+      buttonGrid.classList.add("single-button");
+      } else {
+      buttonGrid.classList.remove("single-button");
+     }
+
+      release.buttons.forEach(button => {
+      const a = document.createElement("a");
+      a.textContent = button.label;
+      a.href = button.href || "#";
+      a.className = button.className || "btn btn-primary";
+
+      if (button.target) {
+      a.target = button.target;
+      a.rel = "noopener";
+  }
+
+  if (button.className && button.className.includes("btn-disabled")) {
+    a.setAttribute("aria-disabled", "true");
+    a.addEventListener("click", (e) => e.preventDefault());
+  }
+
+  buttonGrid.appendChild(a);
+});
 
       document.getElementById("snippet-1").textContent = release.snippets[0] || "";
       document.getElementById("snippet-2").textContent = release.snippets[1] || "";

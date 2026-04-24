@@ -83,7 +83,7 @@ a {
   width: 42px;
   object-fit: contain;
   position: relative;
-  top: 5px;
+  top: 10px;
 }
 
 .main-nav {
@@ -692,4 +692,131 @@ a {
 
 .contact-form .btn {
   justify-self: start;
+}
+
+/* Sample page */
+.sample-card {
+  max-width: 760px;
+  margin: 0 auto 32px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 34px 32px;
+  box-shadow: 0 10px 24px var(--shadow);
+}
+
+.sample-card h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.sample-form {
+  display: grid;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.form-row {
+  display: grid;
+  gap: 8px;
+}
+
+.form-row label {
+  font-weight: 700;
+  color: var(--bg-dark);
+}
+
+.form-row input,
+.form-row textarea,
+.form-row select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font: inherit;
+  background: white;
+  color: var(--text-dark);
+}
+
+.form-row input:focus,
+.form-row textarea:focus,
+.form-row select:focus {
+  outline: none;
+  border-color: var(--sage-deep);
+  box-shadow: 0 0 0 3px rgba(142, 161, 132, 0.18);
+}
+
+.sample-form .btn {
+  justify-self: start;
+}
+
+.sample-note {
+  margin-top: 18px;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.optional-text {
+  font-weight: 400;
+  color: #666;
+}
+
+.sample-options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.sample-option-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px 22px;
+  box-shadow: 0 8px 20px var(--shadow);
+}
+
+.sample-option-card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.sample-option-card p {
+  margin: 0;
+  color: #4d4d50;
+}
+
+@media (max-width: 760px) {
+  .sample-card {
+    padding: 26px 20px;
+    border-radius: 16px;
+  }
+
+  .sample-options-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.btn-disabled {
+  background: #a0a0a5;
+  color: var(--text-light);
+  cursor: default;
+  pointer-events: auto;
+}
+
+.btn-disabled:hover {
+  transform: none;
+  background: #a0a0a5;
+}
+
+.button-grid:has(.btn-disabled:only-child),
+.button-grid.single-button {
+  grid-template-columns: 1fr;
+}
+
+.kit-form-wrap {
+  margin-top: 24px;
+}
+
+.kit-form-wrap form {
+  width: 100%;
 }
