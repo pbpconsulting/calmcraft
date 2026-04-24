@@ -641,3 +641,55 @@ a {
     padding: 44px 0 40px;
   }
 }
+
+.contact-page-card {
+  max-width: 760px;
+  margin: 0 auto;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 34px 32px;
+  box-shadow: 0 10px 24px var(--shadow);
+}
+
+.contact-form {
+  display: grid;
+  gap: 18px;
+}
+
+.form-row {
+  display: grid;
+  gap: 8px;
+}
+
+.form-row label {
+  font-weight: 700;
+  color: var(--bg-dark);
+}
+
+.form-row input,
+.form-row textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font: inherit;
+  background: white;
+  color: var(--text-dark);
+}
+
+.form-row textarea {
+  resize: vertical;
+  min-height: 160px;
+}
+
+.form-row input:focus,
+.form-row textarea:focus {
+  outline: none;
+  border-color: var(--sage-deep);
+  box-shadow: 0 0 0 3px rgba(142, 161, 132, 0.18);
+}
+
+.contact-form .btn {
+  justify-self: start;
+}

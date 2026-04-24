@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phil Phelan - Contact</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <a href="index.html" class="brand-link">
+        <img src="images/mylogo-sage.svg" alt="Phil Phelan logo" class="brand-mark">
+        <span class="brand-name">phil phelan</span>
+      </a>
+    </div>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="index.html" class="nav-link">Books</a>
+      <a href="advisory.html" class="nav-link">Advisory</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="contact.html" class="nav-link active">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero hero-dark">
+    <div class="container hero-inner">
+      <h1>Contact</h1>
+      <p>Send an enquiry and I’ll get back to you.</p>
+    </div>
+  </section>
+
+  <main class="container page-content narrow">
+    <section class="contact-page-card">
+      <form action="https://formspree.io/f/mdaybowz" method="POST" class="contact-form">
+      <input type="hidden" name="_subject" value="New website contact form enquiry">
+        <div class="form-row">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-row">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+
+        <div class="form-row">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="7" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Send enquiry</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© Phil Phelan 2026</p>
+    </div>
+  </footer>
+</body>
+</html>
