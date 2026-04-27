@@ -620,7 +620,7 @@ a {
   .main-nav {
     flex-wrap: wrap;
   }
- 
+
   .blog-post {
     padding: 26px 20px;
     border-radius: 14px;
@@ -843,4 +843,112 @@ a {
   margin: 26px auto 18px;
   display: block;
   border-radius: 0;
+}
+
+.sample-downloads {
+  text-align: center;
+}
+
+.sample-error {
+  margin-top: 14px;
+  color: #b00020;
+  font-weight: 700;
+}
+
+/* Better mobile layout for book carousel */
+@media (max-width: 760px) {
+  .page-content {
+    padding: 24px 0 36px;
+  }
+
+  .release-carousel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .release-panel {
+    order: 1;
+    width: 100%;
+    padding: 18px;
+    gap: 18px;
+    border-radius: 16px;
+  }
+
+  .release-cover-wrap {
+    justify-content: center;
+  }
+
+  .release-cover {
+    max-width: 190px;
+    border-radius: 10px;
+  }
+
+  .release-details h3 {
+    font-size: 1.55rem;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .release-blurb {
+    font-size: 0.98rem;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .button-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .btn {
+    min-height: 44px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+  }
+
+  .snippet-block {
+    margin-top: 14px;
+  }
+
+  .snippet-block h4 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .snippet {
+    font-size: 0.92rem;
+    line-height: 1.45;
+    padding: 12px 14px;
+  }
+
+  #snippet-2,
+  #snippet-3 {
+    display: none;
+  }
+
+  .related-block {
+    display: none;
+  }
+
+  .carousel-arrow {
+    order: 2;
+    width: calc(50% - 6px);
+    min-height: 46px;
+    border-radius: 12px;
+    font-size: 1.4rem;
+  }
+
+  .hero-inner {
+    padding: 32px 0 30px;
+  }
+
+  .hero-inner h1 {
+    font-size: 2rem;
+  }
+
+  .hero-inner p {
+    font-size: 1rem;
+  }
 }
