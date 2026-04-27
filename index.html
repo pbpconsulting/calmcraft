@@ -38,11 +38,13 @@
 
   <main class="container page-content">
     <section class="release-carousel" aria-label="Release carousel">
+      <div class="carousel-dots" id="release-dots" aria-label="Release selector"></div>
+
       <button class="carousel-arrow" id="prev-release" aria-label="Previous release">&#10094;</button>
 
       <div class="release-panel">
         <div class="release-cover-wrap">
-          <img id="release-cover" src="images/universe-overhyped-wellness-retreat.jpg" alt="Release cover" class="release-cover">
+          <img id="release-cover" src="images/universe-overhyped-wellness-retreat.jpg" alt="Release cover" class="release-cover zoomable-image" tabindex="0" role="button" aria-label="Open release cover larger">
         </div>
 
         <div class="release-details">
@@ -88,8 +90,7 @@ const Books = [
     cover: "images/universe-overhyped-wellness-retreat.jpg",
     blurb: "A satirical sci-fi trip into a place where everything works beautifully, which turns out to be exactly the problem.",
     buttons: [
-
-    {
+      {
         label: "Buy on Amazon",
         href: "https://www.amazon.com.au/dp/B0FKN4XPHY",
         className: "btn btn-primary",
@@ -100,21 +101,16 @@ const Books = [
         href: "sample.html",
         className: "btn btn-primary"
       },
-   
       {
         label: "Coming soon: Listen on Audible",
         href: "#",
         className: "btn btn-secondary"
       },
-
       {
         label: "Coming soon: Free Audio Book sample",
         href: "#",
         className: "btn btn-secondary"
-      },
-
-
-
+      }
     ],
     snippets: [
       'Jeff would later describe his experience travelling to Utopia as: "Transcendental, like being hugged by physics and slapped by his ex-wife at the same time". I can’t say he was wrong, although I can only imagine the slap.',
@@ -148,72 +144,164 @@ const Books = [
   }
 ];
 
-    let currentIndex = 0;
+let currentIndex = 0;
 
-    function renderRelease(index) {
-      const release = Books[index];
+function renderRelease(index) {
+  const release = Books[index];
 
-      document.getElementById("release-cover").src = release.cover;
-      document.getElementById("release-cover").alt = release.title + " cover";
-      document.getElementById("release-title").textContent = release.title;
-      document.getElementById("release-blurb").textContent = release.blurb;
+  document.getElementById("release-cover").src = release.cover;
+  document.getElementById("release-cover").alt = release.title + " cover";
+  document.getElementById("release-title").textContent = release.title;
+  document.getElementById("release-blurb").textContent = release.blurb;
 
-      const buttonGrid = document.getElementById("button-grid");
-      buttonGrid.innerHTML = "";
+  const buttonGrid = document.getElementById("button-grid");
+  buttonGrid.innerHTML = "";
 
-      if (release.buttons.length === 1) {
-      buttonGrid.classList.add("single-button");
-      } else {
-      buttonGrid.classList.remove("single-button");
-     }
+  if (release.buttons.length === 1) {
+    buttonGrid.classList.add("single-button");
+  } else {
+    buttonGrid.classList.remove("single-button");
+  }
 
-      release.buttons.forEach(button => {
-      const a = document.createElement("a");
-      a.textContent = button.label;
-      a.href = button.href || "#";
-      a.className = button.className || "btn btn-primary";
+  release.buttons.forEach(button => {
+    const a = document.createElement("a");
+    a.textContent = button.label;
+    a.href = button.href || "#";
+    a.className = button.className || "btn btn-primary";
 
-      if (button.target) {
+    if (button.target) {
       a.target = button.target;
       a.rel = "noopener";
-  }
-
-  if (button.className && button.className.includes("btn-disabled")) {
-    a.setAttribute("aria-disabled", "true");
-    a.addEventListener("click", (e) => e.preventDefault());
-  }
-
-  buttonGrid.appendChild(a);
-});
-
-      document.getElementById("snippet-1").textContent = release.snippets[0] || "";
-      document.getElementById("snippet-2").textContent = release.snippets[1] || "";
-      document.getElementById("snippet-3").textContent = release.snippets[2] || "";
-
-      const relatedList = document.getElementById("related-Books");
-      relatedList.innerHTML = "";
-
-      release.related.forEach(item => {
-        const li = document.createElement("li");
-        const a = document.createElement("a");
-        a.href = item.href;
-        a.textContent = item.label;
-        li.appendChild(a);
-        relatedList.appendChild(li);
-      });
     }
 
-    document.getElementById("prev-release").addEventListener("click", () => {
-      currentIndex = (currentIndex - 1 + Books.length) % Books.length;
+    if (button.className && button.className.includes("btn-disabled")) {
+      a.setAttribute("aria-disabled", "true");
+      a.addEventListener("click", (e) => e.preventDefault());
+    }
+
+    buttonGrid.appendChild(a);
+  });
+
+  document.getElementById("snippet-1").textContent = release.snippets[0] || "";
+  document.getElementById("snippet-2").textContent = release.snippets[1] || "";
+  document.getElementById("snippet-3").textContent = release.snippets[2] || "";
+
+  const relatedList = document.getElementById("related-Books");
+  relatedList.innerHTML = "";
+
+  release.related.forEach(item => {
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.href = item.href;
+    a.textContent = item.label;
+    li.appendChild(a);
+    relatedList.appendChild(li);
+  });
+
+  updateDots();
+}
+
+function renderDots() {
+  const dots = document.getElementById("release-dots");
+  dots.innerHTML = "";
+
+  Books.forEach((book, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "carousel-dot";
+    button.setAttribute("aria-label", "Show " + book.title);
+
+    button.addEventListener("click", () => {
+      currentIndex = index;
       renderRelease(currentIndex);
     });
 
-    document.getElementById("next-release").addEventListener("click", () => {
-      currentIndex = (currentIndex + 1) % Books.length;
-      renderRelease(currentIndex);
+    dots.appendChild(button);
+  });
+}
+
+function updateDots() {
+  const dots = document.querySelectorAll(".carousel-dot");
+
+  dots.forEach((dot, index) => {
+    dot.classList.toggle("active", index === currentIndex);
+    dot.setAttribute("aria-current", index === currentIndex ? "true" : "false");
+  });
+}
+
+function openLightbox(src, altText) {
+  const existing = document.querySelector(".image-lightbox");
+  if (existing) existing.remove();
+
+  const lightbox = document.createElement("div");
+  lightbox.className = "image-lightbox";
+
+  const img = document.createElement("img");
+  img.src = src;
+  img.alt = altText || "Enlarged image";
+
+  const closeButton = document.createElement("button");
+  closeButton.className = "image-lightbox-close";
+  closeButton.type = "button";
+  closeButton.setAttribute("aria-label", "Close enlarged image");
+  closeButton.innerHTML = "&times;";
+
+  lightbox.appendChild(closeButton);
+  lightbox.appendChild(img);
+  document.body.appendChild(lightbox);
+
+  function closeLightbox() {
+    lightbox.remove();
+    document.removeEventListener("keydown", escapeClose);
+  }
+
+  function escapeClose(event) {
+    if (event.key === "Escape") {
+      closeLightbox();
+    }
+  }
+
+  closeButton.addEventListener("click", closeLightbox);
+
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener("keydown", escapeClose);
+}
+
+function setupImageZoom() {
+  document.querySelectorAll(".release-cover").forEach((img) => {
+    img.style.cursor = "zoom-in";
+
+    img.addEventListener("click", () => {
+      openLightbox(img.currentSrc || img.src, img.alt);
     });
 
-    renderRelease(currentIndex);
+    img.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openLightbox(img.currentSrc || img.src, img.alt);
+      }
+    });
+  });
+}
+
+document.getElementById("prev-release").addEventListener("click", () => {
+  currentIndex = (currentIndex - 1 + Books.length) % Books.length;
+  renderRelease(currentIndex);
+});
+
+document.getElementById("next-release").addEventListener("click", () => {
+  currentIndex = (currentIndex + 1) % Books.length;
+  renderRelease(currentIndex);
+});
+
+renderDots();
+renderRelease(currentIndex);
+setupImageZoom();
   </script>
 </body>
 </html>
