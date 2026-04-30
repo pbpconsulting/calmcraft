@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>philphelan.me - Free Sample</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="site-header">
+  <div class="brand">
+    <a href="index.html" class="brand-link">
+      <img src="images/mylogo-sage.svg" alt="Phil Phelan logo" class="brand-mark">
+      <span class="brand-name">phil phelan</span>
+    </a>
+  </div>
+
+  <nav class="main-nav" aria-label="Main navigation">
+    <a href="index.html" class="nav-link">Books</a>
+    <a href="blog.html" class="nav-link">Blog</a>
+    <a href="advisory.html" class="nav-link">Advisory</a>
+  </nav>
+
+  <a href="contact.html" class="header-contact-btn">Contact</a>
+</header>
+
+  <section class="hero hero-dark">
+    <div class="container hero-inner">
+      <h1>The Universe's Most Overhyped Wellness Retreat</h1>
+      <p>Get the first <strong>three</strong> chapters <strong>free</strong></p>
+    </div>
+  </section>
+
+  <main class="container page-content narrow">
+
+<section class="sample-card">
+  <div id="sample-form-area">
+    <p>Enter your details and I’ll unlock the free sample downloads.</p>
+
+    <form id="sample-form" class="sample-form">
+      <input type="hidden" name="_subject" value="New free book sample request">
+
+      <div class="form-row">
+        <label for="first-name">First name</label>
+        <input type="text" id="first-name" name="first_name" required>
+      </div>
+
+      <div class="form-row">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-row">
+        <label for="mobile">Mobile number <span class="optional-text">(optional)</span></label>
+        <input type="tel" id="mobile" name="mobile">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+
+      <p id="sample-form-error" class="sample-error" style="display:none;">
+        Something went wrong. Please try again.
+      </p>
+    </form>
+
+    <p class="sample-note">
+      You may receive very occasional updates about my new books and posts. No spam. And definitely no motivational shouting.
+    </p>
+  </div>
+
+  <div id="sample-downloads" class="sample-downloads" style="display:none;">
+    <h2>Thanks - your free samples are ready</h2>
+    <p>Choose whichever format suits you best.</p>
+
+    <div class="button-grid">
+      <a href="https://www.dropbox.com/scl/fi/exv8x41c4ofrvs2y4rdll/TUMOWR-by-philphelan-sample-chapters.pdf?rlkey=z2cjxkvs7q8xq3vwk8prftzhs&st=1e0lrygv&dl=1" class="btn btn-primary" target="_blank" rel="noopener">Download PDF</a>
+      <a href="https://www.dropbox.com/scl/fi/xg2i96uu5n4lvla9yte0o/TUMOWR-by-philphelan-sample-chapters.epub?rlkey=f4lgh6hcgt4nhneplh9pcrc17&st=su165tip&dl=1" class="btn btn-secondary" target="_blank" rel="noopener">Download ePub</a>
+        </div>
+
+     <p class="sample-note">
+       Audio Book samples coming soon - it's taking a while to get the Geese to act professional
+      </p>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span class="footer-name">phil phelan</span> 2026</p>
+    </div>
+  </footer>
+
+<script>
+  const sampleForm = document.getElementById("sample-form");
+  const formArea = document.getElementById("sample-form-area");
+  const downloadsArea = document.getElementById("sample-downloads");
+  const errorMessage = document.getElementById("sample-form-error");
+
+  sampleForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(sampleForm);
+
+    try {
+      const response = await fetch("https://formspree.io/f/xojyzldw", {
+        method: "POST",
+        body: formData,
+        headers: {
+          "Accept": "application/json"
+        }
+      });
+
+      if (response.ok) {
+        formArea.style.display = "none";
+        downloadsArea.style.display = "block";
+        window.scrollTo({ top: downloadsArea.offsetTop - 120, behavior: "smooth" });
+      } else {
+        errorMessage.style.display = "block";
+      }
+    } catch (error) {
+      errorMessage.style.display = "block";
+    }
+  });
+</script>
+
+
+</body>
+</html>

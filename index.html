@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>philphelan.me - Books</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+  <div class="brand">
+    <a href="index.html" class="brand-link">
+      <img src="images/mylogo-sage.svg" alt="Phil Phelan logo" class="brand-mark">
+      <span class="brand-name">phil phelan</span>
+    </a>
+  </div>
+
+  <nav class="main-nav" aria-label="Main navigation">
+    <a href="index.html" class="nav-link">Books</a>
+    <a href="blog.html" class="nav-link">Blog</a>
+    <a href="advisory.html" class="nav-link">Advisory</a>
+ 
+  </nav>
+
+  <a href="contact.html" class="header-contact-btn">Contact</a>
+</header>
+  
+<section class="hero hero-dark">
+  <div class="container hero-inner">
+    <h1>Welcome</h1>
+    <p>Download free samples of my books,</p>
+    <p>or browse to my blogs using links above</p>
+  </div>
+</section>
+
+  <main class="container page-content">
+    <section class="release-carousel" aria-label="Release carousel">
+      <div class="carousel-dots" id="release-dots" aria-label="Release selector"></div>
+
+      <button class="carousel-arrow" id="prev-release" aria-label="Previous release">&#10094;</button>
+
+      <div class="release-panel">
+        <div class="release-cover-wrap">
+          <img id="release-cover" src="images/universe-overhyped-wellness-retreat.jpg" alt="Release cover" class="release-cover zoomable-image" tabindex="0" role="button" aria-label="Open release cover larger">
+        </div>
+
+        <div class="release-details">
+          <h3 id="release-title">The Universe's Most Overhyped Wellness Retreat</h3>
+
+          <p id="release-blurb" class="release-blurb">
+            A satirical sci-fi trip into a place where everything works beautifully, which turns out to be exactly the problem.
+          </p>
+
+          <div class="button-grid" id="button-grid"></div>
+
+          <div class="snippet-block">
+            <h4>Snippets</h4>
+
+            <blockquote class="snippet" id="snippet-1"></blockquote>
+            <blockquote class="snippet" id="snippet-2"></blockquote>
+            <blockquote class="snippet" id="snippet-3"></blockquote>
+
+          </div>
+
+          <div class="related-block">
+            <h4>Related Books</h4>
+            <ul id="related-Books"></ul>
+          </div>
+        </div>
+      </div>
+
+      <button class="carousel-arrow" id="next-release" aria-label="Next release">&#10095;</button>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span class="footer-name">phil phelan</span> 2026</p>
+    </div>
+  </footer>
+
+  <script>
+const Books = [
+  {
+    id: "wellness-retreat",
+    title: "The Universe's Most Overhyped Wellness Retreat",
+    cover: "images/universe-overhyped-wellness-retreat.jpg",
+    blurb: "A satirical sci-fi trip into a place where everything works beautifully, which turns out to be exactly the problem.",
+    buttons: [
+      {
+        label: "Buy on Amazon",
+        href: "https://www.amazon.com.au/dp/B0FKN4XPHY",
+        className: "btn btn-primary",
+        target: "_blank"
+      },
+      {
+        label: "Download free eBook sample",
+        href: "sample.html",
+        className: "btn btn-primary"
+      },
+      {
+        label: "Coming soon: Listen on Audible",
+        href: "#",
+        className: "btn btn-secondary"
+      },
+      {
+        label: "Coming soon: Free Audio Book sample",
+        href: "#",
+        className: "btn btn-secondary"
+      }
+    ],
+    snippets: [
+      'Jeff would later describe his experience travelling to Utopia as: "Transcendental, like being hugged by physics and slapped by his ex-wife at the same time". I can’t say he was wrong, although I can only imagine the slap.',
+      'Around us, tiny holographic scenes began flickering mid-air – moments from our past lives played out; Jeff laughing with Emma and me on a pier; me alone in a hospital corridor, hands trembling. The images jumped, cut, and rewound – replaying our worst doubts like a director who couldn’t decide on an ending. A chair suddenly unfolded itself nearby, legs clicking out like an insect. A waiter asked in a voice like distant thunder, “Would you like to order your decisions?”',
+      'Betty studied us, then she sighed – a sound so soft it could have been compassion. “Take food and water. Leave at dawn. Go past the Museum of Truths then follow the maintenance road heading east until the buildings thin out. When the path eventually breaks, walk directly east for two days. Do not turn back, no matter how empty it feels.”'
+    ],
+    related: [
+      { label: "Amazingly Average", href: "#" }
+    ]
+  },
+  {
+    id: "amazingly-average",
+    title: "Amazingly Average",
+    cover: "images/Amazingly-Average-FrontCover.png",
+    blurb: "A grounded, dry, honest book about ordinary life, impossible standards, and the relief of dropping the performance.",
+    buttons: [
+      {
+        label: "Coming soon",
+        href: "#",
+        className: "btn btn-disabled"
+      }
+    ],
+    snippets: [
+      '"You do not need to become extraordinary to become useful, peaceful, or decent"',
+      '"The Theory of happiness is ..."',
+      '"A lot of suffering comes from trying to look impressive to people who barely remember your surname"'
+    ],
+    related: [
+      { label: "The Universe's Most Overhyped Wellness Retreat", href: "#" }
+    ]
+  }
+];
+
+let currentIndex = 0;
+
+function renderRelease(index) {
+  const release = Books[index];
+
+  document.getElementById("release-cover").src = release.cover;
+  document.getElementById("release-cover").alt = release.title + " cover";
+  document.getElementById("release-title").textContent = release.title;
+  document.getElementById("release-blurb").textContent = release.blurb;
+
+  const buttonGrid = document.getElementById("button-grid");
+  buttonGrid.innerHTML = "";
+
+  if (release.buttons.length === 1) {
+    buttonGrid.classList.add("single-button");
+  } else {
+    buttonGrid.classList.remove("single-button");
+  }
+
+  release.buttons.forEach(button => {
+    const a = document.createElement("a");
+    a.textContent = button.label;
+    a.href = button.href || "#";
+    a.className = button.className || "btn btn-primary";
+
+    if (button.target) {
+      a.target = button.target;
+      a.rel = "noopener";
+    }
+
+    if (button.className && button.className.includes("btn-disabled")) {
+      a.setAttribute("aria-disabled", "true");
+      a.addEventListener("click", (e) => e.preventDefault());
+    }
+
+    buttonGrid.appendChild(a);
+  });
+
+  document.getElementById("snippet-1").textContent = release.snippets[0] || "";
+  document.getElementById("snippet-2").textContent = release.snippets[1] || "";
+  document.getElementById("snippet-3").textContent = release.snippets[2] || "";
+
+  const relatedList = document.getElementById("related-Books");
+  relatedList.innerHTML = "";
+
+  release.related.forEach(item => {
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.href = item.href;
+    a.textContent = item.label;
+    li.appendChild(a);
+    relatedList.appendChild(li);
+  });
+
+  updateDots();
+}
+
+function renderDots() {
+  const dots = document.getElementById("release-dots");
+  dots.innerHTML = "";
+
+  Books.forEach((book, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "carousel-dot";
+    button.setAttribute("aria-label", "Show " + book.title);
+
+    button.addEventListener("click", () => {
+      currentIndex = index;
+      renderRelease(currentIndex);
+    });
+
+    dots.appendChild(button);
+  });
+}
+
+function updateDots() {
+  const dots = document.querySelectorAll(".carousel-dot");
+
+  dots.forEach((dot, index) => {
+    dot.classList.toggle("active", index === currentIndex);
+    dot.setAttribute("aria-current", index === currentIndex ? "true" : "false");
+  });
+}
+
+function openLightbox(src, altText) {
+  const existing = document.querySelector(".image-lightbox");
+  if (existing) existing.remove();
+
+  const lightbox = document.createElement("div");
+  lightbox.className = "image-lightbox";
+
+  const img = document.createElement("img");
+  img.src = src;
+  img.alt = altText || "Enlarged image";
+
+  const closeButton = document.createElement("button");
+  closeButton.className = "image-lightbox-close";
+  closeButton.type = "button";
+  closeButton.setAttribute("aria-label", "Close enlarged image");
+  closeButton.innerHTML = "&times;";
+
+  lightbox.appendChild(closeButton);
+  lightbox.appendChild(img);
+  document.body.appendChild(lightbox);
+
+  function closeLightbox() {
+    lightbox.remove();
+    document.removeEventListener("keydown", escapeClose);
+  }
+
+  function escapeClose(event) {
+    if (event.key === "Escape") {
+      closeLightbox();
+    }
+  }
+
+  closeButton.addEventListener("click", closeLightbox);
+
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener("keydown", escapeClose);
+}
+
+
+function setupCarouselSwipe() {
+  const carousel = document.querySelector(".release-carousel");
+  if (!carousel) return;
+
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let justSwiped = false;
+
+  carousel.addEventListener("touchstart", (event) => {
+    const touch = event.changedTouches[0];
+    touchStartX = touch.screenX;
+    touchStartY = touch.screenY;
+  }, { passive: true });
+
+  carousel.addEventListener("touchend", (event) => {
+    const touch = event.changedTouches[0];
+    const deltaX = touch.screenX - touchStartX;
+    const deltaY = touch.screenY - touchStartY;
+
+    const isHorizontalSwipe = Math.abs(deltaX) > 55 && Math.abs(deltaX) > Math.abs(deltaY) * 1.4;
+
+    if (!isHorizontalSwipe) return;
+
+    justSwiped = true;
+
+    if (deltaX < 0) {
+      currentIndex = (currentIndex + 1) % Books.length;
+    } else {
+      currentIndex = (currentIndex - 1 + Books.length) % Books.length;
+    }
+
+    renderRelease(currentIndex);
+
+    window.setTimeout(() => {
+      justSwiped = false;
+    }, 300);
+  }, { passive: true });
+
+  window.carouselJustSwiped = function () {
+    return justSwiped;
+  };
+}
+
+function setupImageZoom() {
+  document.querySelectorAll(".release-cover").forEach((img) => {
+    img.style.cursor = "zoom-in";
+
+    img.addEventListener("click", () => {
+      if (window.carouselJustSwiped && window.carouselJustSwiped()) return;
+      openLightbox(img.currentSrc || img.src, img.alt);
+    });
+
+    img.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openLightbox(img.currentSrc || img.src, img.alt);
+      }
+    });
+  });
+}
+
+document.getElementById("prev-release").addEventListener("click", () => {
+  currentIndex = (currentIndex - 1 + Books.length) % Books.length;
+  renderRelease(currentIndex);
+});
+
+document.getElementById("next-release").addEventListener("click", () => {
+  currentIndex = (currentIndex + 1) % Books.length;
+  renderRelease(currentIndex);
+});
+
+renderDots();
+renderRelease(currentIndex);
+setupImageZoom();
+setupCarouselSwipe();
+  </script>
+</body>
+</html>

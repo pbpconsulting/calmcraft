@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phil Phelan - Blog</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+  <div class="brand">
+    <a href="index.html" class="brand-link">
+      <img src="images/mylogo-sage.svg" alt="Phil Phelan logo" class="brand-mark">
+      <span class="brand-name">phil phelan</span>
+    </a>
+  </div>
+
+  <nav class="main-nav" aria-label="Main navigation">
+    <a href="index.html" class="nav-link">Books</a>
+    <a href="blog.html" class="nav-link">Blog</a>
+    <a href="advisory.html" class="nav-link">Advisory</a>
+   </nav>
+
+  <a href="contact.html" class="header-contact-btn">Contact</a>
+</header>
+
+  <section class="hero hero-dark">
+    <div class="container hero-inner">
+      <h1>Blogs</h1>
+      <p>Writing on AI, authoring, mental health, and simply staying sane</p>
+    </div>
+  </section>
+
+  <main class="container page-content narrow">
+    <section class="blog-grid">
+      <article class="blog-card">
+        <img src="images/ai-mind-illustration.jpg" alt="AI and mind illustration" class="blog-image">
+        <a href="5-ways-ai-messes-with-your-mind.html" class="blog-content blog-content-link" aria-label="Read more: The Silent Rewrite - 5 ways AI messes with your mind">
+          <h2>The Silent Rewrite - 5 ways AI messes with your mind</h2>
+          <p>How artificial intelligence can distort our thinking, expectations, and reality. And rewire us, silently.</p>
+          <span class="text-link">Read more</span>
+        </a>
+      </article>
+
+      <article class="blog-card">
+        <img src="images/Instant Reassurance.png" alt="Futuristic vending machine selling instant reassurance through an AI support bot" class="blog-image">
+        <a href="insert-overthoughts-here.html" class="blog-content blog-content-link" aria-label="Read more: Insert Overthoughts Here">
+          <h2>Insert Overthoughts Here</h2>
+          <p>How AI reassurance became the next product we might not know how to stop using.</p>
+          <span class="text-link">Read more</span>
+        </a>
+      </article>
+
+      <article class="blog-card">
+        <img src="images/1.17am.jpg" alt="A tired man sitting awake at 1:17am using an AI chat tool for support" class="blog-image">
+        <a href="Is AI our 1am Therapist.html" class="blog-content blog-content-link" aria-label="Read more: Is AI our Therapist?">
+          <h2>Is AI our Therapist?</h2>
+          <p>People are already using AI for stress, anxiety and late-night reassurance. The problem is not whether it can help - it is whether it is safe enough to trust.</p>
+          <span class="text-link">Read more</span>
+        </a>
+      </article>
+
+      <article class="blog-card">
+        <div class="blog-image" style="display: flex; align-items: center; justify-content: center; background: #f5f2ed; padding: 1rem; box-sizing: border-box;">
+          <img src="images/MHFA Badge.png" alt="Mental Health First Aid accreditation badge" style="max-width: 82%; max-height: 82%; object-fit: contain; display: block;">
+        </div>
+        <a href="what-to-say-when-someone-isnt-okay.html" class="blog-content blog-content-link" aria-label="Read more: What to Say When Someone Isn’t Okay">
+          <h2>What to Say When Someone Isn’t Okay</h2>
+          <p>Mental Health First Aid doesn't turn you into a therapist. It teaches something simpler: how to notice, ask, listen, and support someone who may be struggling.</p>
+          <span class="text-link">Read more</span>
+        </a>
+      </article>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span class="footer-name">phil phelan</span> 2026</p>
+    </div>
+  </footer>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  function openLightbox(src, altText) {
+    const existing = document.querySelector(".image-lightbox");
+    if (existing) existing.remove();
+
+    const lightbox = document.createElement("div");
+    lightbox.className = "image-lightbox";
+
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = altText || "Enlarged image";
+
+    const closeButton = document.createElement("button");
+    closeButton.className = "image-lightbox-close";
+    closeButton.type = "button";
+    closeButton.setAttribute("aria-label", "Close enlarged image");
+    closeButton.innerHTML = "&times;";
+
+    lightbox.appendChild(closeButton);
+    lightbox.appendChild(img);
+    document.body.appendChild(lightbox);
+
+    function closeLightbox() {
+      lightbox.remove();
+      document.removeEventListener("keydown", escapeClose);
+    }
+
+    function escapeClose(event) {
+      if (event.key === "Escape") {
+        closeLightbox();
+      }
+    }
+
+    closeButton.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", escapeClose);
+  }
+
+  document.querySelectorAll(".blog-card img, .blog-post img").forEach((img) => {
+    img.addEventListener("click", () => {
+      openLightbox(img.currentSrc || img.src, img.alt);
+    });
+
+    img.setAttribute("tabindex", "0");
+    img.setAttribute("role", "button");
+    img.setAttribute("aria-label", "Open image larger");
+
+    img.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openLightbox(img.currentSrc || img.src, img.alt);
+      }
+    });
+  });
+});
+  </script>
+</body>
+</html>
