@@ -336,8 +336,8 @@ a {
 }
 
 .service-card--dark {
-  background: var(--bg-dark);
-  color: var(--text-light);
+  background: #525255;
+  color: #d4d3d0;
   border-color: white;
 }
 
@@ -376,8 +376,8 @@ a {
 }
 
 .service-card--sage {
-  background: var(--bg-dark);
-  color: var(--text-light);
+  background: #525255;
+  color: #d4d3d0;
   border-color: white;
 }
 
@@ -410,7 +410,7 @@ a {
   flex-shrink: 0;
 }
 
-.value-card--cream { background: var(--bg-dark); color: var(--text-light); border-color: white; }
+.value-card--cream { background: #525255; color: #d4d3d0; border-color: white; }
 .value-card--cream h3 { color: var(--sage); }
 
 .value-card--blue  { background: white; color: var(--text-dark); border-color: var(--bg-dark); }
@@ -419,7 +419,7 @@ a {
 .value-card--sage  { background: white; color: var(--text-dark); border-color: var(--bg-dark); }
 .value-card--sage h3  { color: var(--sage-deep); }
 
-.value-card--blush { background: var(--bg-dark); color: var(--text-light); border-color: white; }
+.value-card--blush { background: #525255; color: #d4d3d0; border-color: white; }
 .value-card--blush h3 { color: var(--sage); }
 
 .service-card-example-btn {
