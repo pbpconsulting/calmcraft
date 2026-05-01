@@ -338,7 +338,7 @@ a {
 .service-card--dark {
   background: var(--bg-dark);
   color: var(--text-light);
-  border-color: transparent;
+  border-color: white;
 }
 
 .service-card--dark h3 {
@@ -346,17 +346,17 @@ a {
 }
 
 .service-card--featured {
-  background: #8b7b6e;
-  color: var(--text-light);
-  border-color: transparent;
+  background: white;
+  color: var(--text-dark);
+  border-color: var(--bg-dark);
 }
 
 .service-card--featured h3 {
-  color: #f0e8e0;
+  color: var(--sage-deep);
 }
 
 .service-card--featured a {
-  color: #f0e8e0;
+  color: var(--text-dark);
   font-weight: 700;
   text-decoration: none;
 }
@@ -366,19 +366,19 @@ a {
 }
 
 .service-card--warm {
-  background: #8b7b6e;
-  color: var(--text-light);
-  border-color: transparent;
+  background: white;
+  color: var(--text-dark);
+  border-color: var(--bg-dark);
 }
 
 .service-card--warm h3 {
-  color: #f0e8e0;
+  color: var(--sage-deep);
 }
 
 .service-card--sage {
   background: var(--bg-dark);
   color: var(--text-light);
-  border-color: transparent;
+  border-color: white;
 }
 
 .service-card--sage h3 {
@@ -410,16 +410,16 @@ a {
   flex-shrink: 0;
 }
 
-.value-card--cream { background: var(--bg-dark); color: var(--text-light); border-color: transparent; }
+.value-card--cream { background: var(--bg-dark); color: var(--text-light); border-color: white; }
 .value-card--cream h3 { color: var(--sage); }
 
-.value-card--blue  { background: #8b7b6e; color: var(--text-light); border-color: transparent; }
-.value-card--blue h3  { color: #f0e8e0; }
+.value-card--blue  { background: white; color: var(--text-dark); border-color: var(--bg-dark); }
+.value-card--blue h3  { color: var(--sage-deep); }
 
-.value-card--sage  { background: #8b7b6e; color: var(--text-light); border-color: transparent; }
-.value-card--sage h3  { color: #f0e8e0; }
+.value-card--sage  { background: white; color: var(--text-dark); border-color: var(--bg-dark); }
+.value-card--sage h3  { color: var(--sage-deep); }
 
-.value-card--blush { background: var(--bg-dark); color: var(--text-light); border-color: transparent; }
+.value-card--blush { background: var(--bg-dark); color: var(--text-light); border-color: white; }
 .value-card--blush h3 { color: var(--sage); }
 
 .service-card-example-btn {
@@ -737,6 +737,27 @@ a {
   .value-grid,
   .blog-grid {
     grid-template-columns: 1fr;
+  }
+
+  .service-card:nth-child(odd),
+  .value-card:nth-child(odd) {
+    background: var(--bg-dark) !important;
+    color: var(--text-light) !important;
+    border-color: white !important;
+  }
+  .service-card:nth-child(odd) h3,
+  .value-card:nth-child(odd) h3 {
+    color: var(--sage) !important;
+  }
+  .service-card:nth-child(even),
+  .value-card:nth-child(even) {
+    background: white !important;
+    color: var(--text-dark) !important;
+    border-color: var(--bg-dark) !important;
+  }
+  .service-card:nth-child(even) h3,
+  .value-card:nth-child(even) h3 {
+    color: var(--sage-deep) !important;
   }
 
   .main-nav {
